@@ -1,0 +1,5 @@
+rootProject.name = 'hooxi-collector-grpc'
+
+include 'hooxi-collector-grpc-interface'
+include 'hooxi-collector-grpc-server'
+include 'hooxi-test-grpc-client'

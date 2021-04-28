@@ -1,0 +1,14 @@
+plugins {
+	id 'org.springframework.boot' version "2.4.3"
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'net.devh:grpc-client-spring-boot-starter:2.11.0.RELEASE'
+	implementation project(':hooxi-collector-grpc-interface')
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}

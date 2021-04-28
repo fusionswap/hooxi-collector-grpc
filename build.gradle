@@ -1,0 +1,64 @@
+buildscript {
+  repositories {
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+    }
+  }
+  ext {
+    // https://github.com/grpc/grpc-java/releases
+    grpcVersion = '1.35.0'
+    // https://github.com/protocolbuffers/protobuf/releases
+    protobufVersion = '3.14.0'
+    protobufGradlePluginVersion = '0.8.12'
+
+    // https://github.com/spring-projects/spring-boot/releases
+    springBootVersion = '2.4.3'
+    // https://github.com/spring-projects/spring-security-oauth/releases
+    springSecurityOAuthVersion = '2.5.0.RELEASE'
+
+    lombokPluginVersion = '4.0.0'
+    versioningPluginVersion = '2.14.0'
+    versionsPluginVersion = '0.29.0'
+  }
+}
+
+plugins {
+
+  id 'java'
+  id 'java-library'
+  id "io.spring.dependency-management" version "1.0.11.RELEASE"
+  id 'com.google.protobuf' version '0.8.14'
+}
+
+if (hasProperty('buildScan')) {
+  buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+  }
+}
+
+subprojects {
+
+  group = 'com.hooxi.collector'
+  version = '0.0.1-SNAPSHOT'
+  sourceCompatibility = '11'
+
+  apply plugin: 'java'
+  apply plugin: 'idea'
+  apply plugin: 'io.spring.dependency-management'
+
+
+  repositories {
+    mavenCentral()
+    jcenter()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+  }
+
+  dependencyManagement {
+    imports {
+      mavenBom("org.springframework.boot:spring-boot-dependencies:2.4.3")
+    }
+  }
+
+}
